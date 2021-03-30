@@ -21,6 +21,9 @@ class m210328_101537_create_user_table extends Migration
 
             'password_hash' => $this->string()->notNull(),
             'email' => $this->string()->notNull()->unique(),
+
+            // TimestampBehavior is used to autofill this fields
+            //  with current Unix timestamp 
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
         ]);

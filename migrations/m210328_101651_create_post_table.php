@@ -16,10 +16,13 @@ class m210328_101651_create_post_table extends Migration
             'id' => $this->primaryKey(),
             'title' => $this->string(100)->notNull(),
             'text' => $this->text()->notNull(),
-            'created_at' => $this->date()->notNull(),
-            'updated_at' => $this->date()->notNull(),
             'is_published' => $this->boolean()->notNull()->defaultvalue(false),
             'author_id' => $this->integer()->notNull(),
+
+            // TimestampBehavior is used to autofill this fields
+            //  with current Unix timestamp
+            'created_at' => $this->integer()->notNull(),
+            'updated_at' => $this->integer()->notNull(),
         ]);
 
         // creates index for column `author_id`

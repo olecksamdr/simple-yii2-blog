@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "post".
@@ -10,8 +11,8 @@ use Yii;
  * @property int $id
  * @property string $title
  * @property string $text
- * @property string $created_at
- * @property string $updated_at
+ * @property int $created_at
+ * @property int $updated_at
  * @property int $is_published
  * @property int $author_id
  *
@@ -30,12 +31,21 @@ class Post extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function rules()
     {
         return [
-            [['title', 'text', 'created_at', 'updated_at', 'author_id'], 'required'],
+            [['title', 'text', 'author_id'], 'required'],
             [['text'], 'string'],
-            [['created_at', 'updated_at'], 'safe'],
             [['is_published', 'author_id'], 'integer'],
             [['title'], 'string', 'max' => 100],
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['author_id' => 'id']],
