@@ -1,8 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
-use yii\widgets\Pjax;
+use yii\widgets\ListView;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PostSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -18,27 +17,17 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Post', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <?= GridView::widget([
+    <?= ListView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'title',
-            'text:ntext',
-            'created_at',
-            'updated_at',
-            //'is_published',
-            //'author_id',
-
-            ['class' => 'yii\grid\ActionColumn'],
+        'itemView' => '_posts-list-item',
+        'options' => [
+            'tag' => 'ul',
+            'class' => 'list-unstyled',
         ],
+        'itemOptions' => [
+            'tag' => false,
+        ],
+        'layout' => '{items}{pager}',
     ]); ?>
-
-    <?php Pjax::end(); ?>
 
 </div>
