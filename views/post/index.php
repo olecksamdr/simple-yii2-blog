@@ -7,7 +7,6 @@ use yii\widgets\ListView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Posts';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-index">
 
