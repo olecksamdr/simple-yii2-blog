@@ -30,11 +30,17 @@ class PostController extends Controller
             ],
             'access' => [
                 'class' => AccessControl::className(),
-                'ruleConfig' => ['class' => AuthorAccessRule::className()],
-                'only' => ['update', 'delete'],
+                'only' => ['create', 'update', 'delete'],
                 'rules' => [
                     [
+                        'allow' => true,
+                        'actions' => ['create'],
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'allow' => true,
                         'actions' => ['update', 'delete'],
+                        'class' => AuthorAccessRule::className()
                     ],
                 ],
             ]

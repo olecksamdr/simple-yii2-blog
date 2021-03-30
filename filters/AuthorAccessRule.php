@@ -8,7 +8,6 @@ use app\models\Post;
 // https://stackoverflow.com/questions/29239735/allow-only-author-to-edit-his-post-in-yii2-using-acf
 class AuthorAccessRule extends AccessRule
 {
-  public $allow = true; // Allow access if this rule matches
   public $roles = ['@']; // Ensure user is logged in
 
   public function allows($action, $user, $request)
