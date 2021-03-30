@@ -3,6 +3,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\helpers\Markdown;
 use yii\helpers\HtmlPurifier;
+use yii\helpers\BaseStringHelper;
 ?>
 
 <li class="pb-2">
@@ -16,7 +17,14 @@ use yii\helpers\HtmlPurifier;
       <?= Yii::$app->formatter->asDate($model->created_at).' '. $model->author->username ?>
   </p>
   <p class="lead">
-    <?= HtmlPurifier::process(Markdown::process($model->text)) ?>
+    <?php
+      $unsafe_html = Markdown::process($model->text); 
+      $safe_html = HtmlPurifier::process($unsafe_html);
+    ?>
+    <?= BaseStringHelper::truncateWords($safe_html, 60, '...', true) ?>
   </p>
+  <a class="btn btn-default" href="<?= Url::toRoute(['post/view', 'id' => $model->id]) ?>">
+    Read more
+  </a>
   <hr>
 </li>
