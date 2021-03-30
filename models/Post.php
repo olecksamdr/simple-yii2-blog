@@ -68,7 +68,7 @@ class Post extends \yii\db\ActiveRecord
             'text' => 'Text',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
-            'is_published' => 'Is Published',
+            'is_published' => 'Publish',
             'author_id' => 'Author ID',
         ];
     }
