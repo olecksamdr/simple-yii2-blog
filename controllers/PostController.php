@@ -4,10 +4,12 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Post;
-use app\models\PostSearch;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
+use app\models\PostSearch;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use app\filters\AuthorAccessRule;
+use yii\web\NotFoundHttpException;
 
 /**
  * PostController implements the CRUD actions for Post model.
@@ -26,6 +28,16 @@ class PostController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => ['class' => AuthorAccessRule::className()],
+                'only' => ['update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['update', 'delete'],
+                    ],
+                ],
+            ]
         ];
     }
 

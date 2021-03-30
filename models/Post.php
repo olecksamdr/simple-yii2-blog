@@ -82,4 +82,9 @@ class Post extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'author_id']);
     }
+
+    public static function isUserAuthorOfPost($userId, $postId)
+    {
+        return Post::findOne($postId)->author_id === $userId;
+    }
 }
