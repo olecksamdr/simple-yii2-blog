@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Markdown;
 use yii\helpers\HtmlPurifier;
 
 /* @var $this yii\web\View */
@@ -29,6 +30,8 @@ $this->title = $model->title;
     </div>
     <hr>
 
-    <p class="lead"><?= HtmlPurifier::process($model->text) ?></p>
+    <p class="lead">
+        <?= HtmlPurifier::process(Markdown::process($model->text)) ?>
+    </p>
 
 </div>

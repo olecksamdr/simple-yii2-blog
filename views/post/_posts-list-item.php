@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\helpers\Markdown;
 use yii\helpers\HtmlPurifier;
 ?>
 
@@ -14,6 +15,8 @@ use yii\helpers\HtmlPurifier;
       <!-- TODO: Is it correct way to format? Could we format in model? -->
       <?= Yii::$app->formatter->asDate($model->created_at).' '. $model->author->username ?>
   </p>
-  <p class="lead"><?= HtmlPurifier::process($model->text) ?></p>
+  <p class="lead">
+    <?= HtmlPurifier::process(Markdown::process($model->text)) ?>
+  </p>
   <hr>
 </li>
