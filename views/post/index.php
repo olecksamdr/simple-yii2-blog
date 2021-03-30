@@ -12,10 +12,6 @@ $this->title = 'Posts';
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Post', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'itemView' => '_posts-list-item',
