@@ -11,6 +11,9 @@ use yii\helpers\HtmlPurifier;
       <?= Html::encode($model->title) ?>
     </a>
   </h2>
-  <small><?= $model->created_at . $model->author->username ?></small>
-  <p><?= HtmlPurifier::process($model->text) ?></p>
+  <p class="text-muted ">
+      <!-- TODO: Is it correct way to format? Could we format in model? -->
+      <?= Yii::$app->formatter->asDate($model->created_at).' '. $model->author->username ?>
+  </p>
+  <p class="lead"><?= HtmlPurifier::process($model->text) ?></p>
 </li>
