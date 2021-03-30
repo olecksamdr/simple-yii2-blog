@@ -16,15 +16,5 @@ use yii\helpers\BaseStringHelper;
       <!-- TODO: Is it correct way to format? Could we format in model? -->
       <?= Yii::$app->formatter->asDate($model->created_at).' '. $model->author->username ?>
   </p>
-  <p class="lead">
-    <?php
-      $unsafe_html = Markdown::process($model->text); 
-      $safe_html = HtmlPurifier::process($unsafe_html);
-    ?>
-    <?= BaseStringHelper::truncateWords($safe_html, 60, '...', true) ?>
-  </p>
-  <a class="btn btn-default" href="<?= Url::toRoute(['post/view', 'id' => $model->id]) ?>">
-    Read more
-  </a>
   <hr>
 </li>
